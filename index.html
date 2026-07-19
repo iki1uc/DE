@@ -1,3 +1,11 @@
+{
+  "files": [
+    "t",
+    "T",
+    "1",
+    "EX"
+  ]
+}
 <script>
 async function loadFiles() {
   const res = await fetch("files.json");
@@ -16,3 +24,31 @@ async function loadFiles() {
 }
 loadFiles();
 </script>
+<div class="ultra81">
+  ${Array.from({length:81}, (_,i)=>{
+    const gen = i < 27 ? "4u" : i < 54 ? "WHY" : "onu";
+    const file = files[i] || "—";
+    return `<div class="cell" data-gen="${gen}" data-file="${file}">${file}</div>`;
+  }).join("")}
+</div>
+document.querySelectorAll(".cell").forEach(cell=>{
+  cell.addEventListener("click", async ()=>{
+    const file = cell.dataset.file;
+    const gen = cell.dataset.gen;
+
+    const result = await pyodide.runPythonAsync(`
+file = "${file}"
+gen = "${gen}"
+
+output = {
+  "file": file,
+  "gen": gen,
+  "vector": "6d" if gen=="4u" else "12e" if gen=="WHY" else "6e",
+  "trigger": "C" if gen=="4u" else "X" if gen=="WHY" else "Z"
+}
+output
+    `);
+
+    console.log("Python‑Output:", result);
+  });
+});

@@ -62,7 +62,7 @@ button:hover {
 </div>
 
 <div class="block">
-  <h2>Routing</h2>
+  <h2>Routing (über port.lan)</h2>
   <p>SLI‑Layer: TR öffnet DE und EN</p>
   <button onclick="route('DE')">→ DA‑Kernel (DE)</button>
   <button onclick="route('EN')">→ NE‑Kernel (EN)</button>
@@ -97,7 +97,7 @@ function runQuadrat(){
     "Quadrat‑Modus ausgeführt:\n" + chain.join(" → ");
 }
 
-/* Routing */
+/* Routing über port.lan */
 function route(target){
   if(target === "DE") window.location.href = "DA.html";
   if(target === "EN") window.location.href = "NE.html";
@@ -106,4 +106,3 @@ function route(target){
 
 </body>
 </html>
-

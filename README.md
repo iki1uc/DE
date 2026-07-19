@@ -1,161 +1,173 @@
-# ULTRA‑System – RESPO_ARG_SCAN & RAW6D
+# DE‑System — EPOCHE • RAUM • FÄHIGKEIT • VECTOR • OPTA • SLI
 
-Dieses Repository enthält die vollständige Struktur des ULTRA‑Systems, bestehend aus
-HTML‑Modulen, CSV‑Daten, RAW6D‑Containern und dem ARG/XARG/NARR‑Narrativ‑Layer.
-Alle Module arbeiten gemeinsam im 9×9‑Matrix‑Calc‑Modus und erzeugen Score‑basierte
-Sachverhalte über die NC‑Engine (6×6‑ROOT).
-
----
-
-## 🔷 Systemübersicht
-
-Das ULTRA‑System besteht aus drei Haupt‑Respos:
-
-- **TR** – Root‑Modul (Steuerung, Berechnung, Score‑Leitung)
-- **DE** – Struktur‑Modul (Achsen, Bereiche, Daten)
-- **EN** – Global‑Modul (Verknüpfung, Erweiterung, Public‑Layer)
-
-Alle drei Respos nutzen:
-
-- denselben **DATA‑Layer**
-- dieselbe **9×9‑tmp‑Matrix**
-- denselben **Calc‑Modus**
-- dieselbe **Score‑Leitung**
-- denselben **ARG/XARG/NARR‑Cluster**
-- dieselbe **NC‑Engine (6×6‑ROOT)**
+version: 1.0  
+type: system‑mass  
+zero: 0
 
 ---
 
-## 🔷 3‑Ebenen‑System (3e)
+## 1. EPOCHE (81‑Matrix)
 
-Jedes Respo‑Modul arbeitet über drei Ebenen:
+Die EPOCHE ist die äußere Schicht des Systems.  
+Sie besteht aus **81 Feldern** und wird als:
 
-1. **IN‑Ebene**  
-   Eingang, Trigger, Datenaufnahme.
+x(81)1
 
-2. **CORE‑Ebene**  
-   Berechnung, 9×9‑Matrix, Score‑Ermittlung.
 
-3. **OUT‑Ebene**  
-   Weiterleitung, 3×3‑Sachverhalt, Ort‑System.
+definiert.
 
----
-
-## 🔷 9×9‑Matrix (tmp‑Calc)
-
-Die 9×9‑Matrix dient als temporäre Berechnungseinheit:
-
+### Eigenschaften
 - 81 Felder  
-- Score‑Berechnung  
-- Top‑6‑Auswahl  
-- Best‑Score‑Ergebnis  
-- automatische Weiterleitung  
-- nur **eine** Weiter‑Drehung im freien Modus
+- jede Zeile enthält mindestens eine **0**  
+- jede Spalte enthält mindestens eine **0**  
+- jede 3×3‑Zone enthält mindestens eine **0**  
+- die **0** ist Geburts‑ und Endpunkt  
+- die **0** ist Anker, Gate, API‑Nullpunkt  
+- EPOCHE ist **Beschreibung**, nicht Bewegung
 
-Aus jedem 9×9‑Feld entsteht eine **3×3‑Sachverhalts‑Matrix**.
-
----
-
-## 🔷 ARG / XARG / NARR – Narrativ‑Cluster
-
-Der Narrativ‑Cluster besteht aus:
-
-- **ARG** – Argumentation  
-- **XARG** – erweiterte Argumentation  
-- **NARR** – Meta‑Narrativ / Präsenz‑Narrativ
-
-Alle drei dürfen:
-
-- alle Ein‑Buchstaben‑Respos nutzen  
-- alle 352 Respos anwählen  
-- Score erzeugen  
-- Weiterleitung auslösen  
-- Ort‑System aktivieren (Home / Alt / Neu)
+### Datei
+- `EX/port.matrix`
 
 ---
 
-## 🔷 NC‑Engine (6×6‑ROOT)
+## 2. RAUM (27‑E‑Raum)
 
-Die NC‑Engine steuert:
+Der RAUM ist die **Fähigkeit 1** des Systems.  
+Er besteht aus **27 Einheiten** und ist vollständig drehbar.
 
-### 6E – Epoche
-- Ursprung  
-- Aufbau  
-- Verhalten  
-- Produktivität  
-- Nutzen  
-- Wahrheit  
+### Eigenschaften
+- 27 Einheiten  
+- 3 Achsen: X, Y, Z  
+- 3 Ebenen pro Achse  
+- 3 Richtungen pro Drehung  
+- jede Drehung ist eine **Fähigkeit**, nicht Physik  
+- die **0** ist Raum‑Anker
 
-### 6D – Dimension
-- Wahrheit  
-- Kalender  
-- Ort‑Lage  
-- GATE  
-- Wurmloch  
-- Home‑Ort  
-
-Die Engine wählt automatisch den **Top‑6‑Score** und erzeugt daraus die einzige gültige Antwort.
+### Datei
+- `Morph.room`  
+- `port.room` (Bindung)
 
 ---
 
-## 🔷 RAW6D‑Container
+## 3. FÄHIGKEITEN (6‑System)
 
-Die RAW6D‑Container enthalten:
+Das System besitzt **6 Fähigkeiten**, jede mit mindestens einer **0**.
 
-- Schatten‑Sequenzen  
-- 6D‑Körper  
-- Motion‑Blöcke  
-- Depth‑Blöcke  
-- Meta‑Daten (VECTOR, TECH, AXIOM)
+1. drehraum0  
+2. vector‑field0  
+3. opta‑field0  
+4. score‑field0  
+5. sync‑field0  
+6. morph‑field0
 
-Sie werden über den Public‑Layer **RESPO_ARG_SCAN** geladen.
-
----
-
-## 🔷 HTML‑Module
-
-Dieses Repository enthält folgende HTML‑Module:
-
-- `1.html`  
-- `6D.html`  
-- `9.html`  
-- `BEAT².html`  
-- `BEAT³.html`  
-- `CUBE.html`
-
-Alle Module sind Teil der VISIO‑6D‑Darstellung.
+### Datei
+- `port.room`  
+- `EX/morph0.room`
 
 ---
 
-## 🔷 CSV‑Daten
+## 4. VECTOR‑System (6d0 / 12e0 / 6e0)
 
-Die CSV‑Dateien definieren Achsen, Bereiche und Aufgaben:
+Jeder GEN‑Strang besitzt einen Vector:
 
-- `achse-ist-6.csv`  
-- `bereich-ist-6.csv`  
-- `modul-aufgabe-8.csv`
+| GEN | Vector | Achse |
+|-----|--------|-------|
+| 4u  | 6d0    | X     |
+| WHY | 12e0   | Y     |
+| onu | 6e0    | Z     |
 
----
-
-## 🔷 Ziel des Systems
-
-Das ULTRA‑System verbindet:
-
-- Daten  
-- Geometrie  
-- Narrativ  
-- Score  
-- Epoche  
-- Dimension  
-- Ort  
-- Weiterleitung  
-
-zu einem einzigen konsistenten 6D‑Berechnungs‑Modell.
-
-TR bleibt die Root‑Instanz und garantiert die Stabilität aller Berechnungen.
+### Datei
+- `port.room`
 
 ---
 
-## 🔷 Lizenz
+## 5. OPTA‑System (port.*0)
 
-Dieses Projekt ist Teil des ULTRA‑Frameworks und wird öffentlich bereitgestellt.
+Jedes Vector‑Feld besitzt eigene Opta‑Module:
+
+### DE (6d0)
+- [port.fit0](ca://s?q=port_fit0_definieren)  
+- [port.fix0](ca://s?q=port_fix0_definieren)  
+- [port.allign0](ca://s?q=port_allign0_definieren)
+
+### EN (12e0)
+- [port.score0](ca://s?q=port_score0_definieren)  
+- [port.capture0](ca://s?q=port_capture0_definieren)  
+- [port.tweak0](ca://s?q=port_tweak0_definieren)
+
+### TR (6e0)
+- [port.fix0](ca://s?q=port_fix0_definieren)  
+- [port.win0](ca://s?q=port_win0_definieren)  
+- [port.tweak0](ca://s?q=port_tweak0_definieren)
+
+---
+
+## 6. SLI‑Layer (Schicht‑Link‑Interface)
+
+SLI verbindet die Schichten DE, EN und TR.
+
+### Eigenschaften
+- jede Öffnung besitzt mindestens eine **0**  
+- jede Zone besitzt mindestens eine **0**  
+- SLI ist epochen‑ und raum‑kompatibel  
+- SLI ist vector‑ und opta‑gebunden
+
+### Datei
+- `SLI.layer`
+
+---
+
+## 7. EX‑Layer (Erkenntnis‑Schicht)
+
+Der EX‑Layer speichert **Erkenntnisse**, nicht Daten.
+
+### Beispiele
+- morph0.room  
+- anwaerter0.room
+
+### Eigenschaften
+- Erkenntnis‑Anker  
+- 0‑basiert  
+- nicht physikalisch  
+- nicht vector‑gebunden  
+- nicht pipeline‑gebunden
+
+---
+
+## 8. Pipeline‑System
+
+Pipeline ist linear (A → B).  
+Morph ist nicht linear (Sprung).
+
+### Datei
+- `port.data`
+
+---
+
+## 9. index.html
+
+index.html ist die **neutrale UI‑Schicht**.  
+Sie lädt nur:
+
+- EPOCHE  
+- RAUM  
+- FÄHIGKEITEN  
+- SLI  
+- port.room
+
+---
+
+## 10. System‑Regel
+
+0 ist Geb/Ende‑Punkt jeder EPOCHE, jedes RAUMs und jeder FÄHIGKEIT.
+
+
+EPOCHE beschreibt.
+RAUM bewegt.
+FÄHIGKEIT wechselt.
+VECTOR richtet.
+OPTA optimiert.
+SLI öffnet.
+EX erkennt.
+
+Nächster Kandidat

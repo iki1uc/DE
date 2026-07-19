@@ -1,41 +1,79 @@
-[score0]
-version = 1.1
-type = "opta-score"
+[port.score]
+version = 1.0
+type = "score-core"
 zero = 0
 
-# Score-Achse (EN / 12e0)
-score.axis   = "Y"
-score.vector = "12e0"
+score.rule = "Berechnet, bewertet und protokolliert DE-Systemwerte, Sequenzfortschritt und Stabilität"
 
-# Score-Bereich (EPOCHE)
-score.zone = [27,28,29, 36,37,38, 45,46,47]
+score.bind.pq      = "port.PQ0"
+score.bind.ex      = "PQ.EX"
+score.bind.room    = "port.room"
+score.bind.matrix  = "port.matrix"
+score.bind.data    = "port.data"
+score.bind.status  = "port.status"
+score.bind.team    = "port.team"
+score.bind.screen  = "port.screen"
+score.bind.visuals = "port.visuals"
+score.bind.grid    = "port.9x9"
+score.bind.win0    = "port.win0"
+score.bind.user    = "port.user"
+score.bind.fit     = "port.fit"
+score.bind.fix     = "port.fix"
+score.bind.allign  = "port.allign"
+score.bind.capture = "port.capture"
+score.bind.build   = "port.build"
+score.bind.send    = "port.send"
 
-# Score-Regel (erweitert)
-score.rule = "Ermittelt den Bewertungswert aus EN-Zuständen und erzeugt den Score-Cluster"
+score.mode = ["auto","manual","seq","vector","zone","state","team","core","stability"]
 
-# Score-Cluster (erweitert)
-score.cluster.top6 = true
-score.cluster.mode = "epoch-linear"
-score.cluster.anchor = 0
-
-# Score-Berechnung (erweitert)
-score.calc = [
-  "epoch-field",
-  "raum-field",
-  "vector-field",
-  "opta-field",
-  "sli-field",
-  "ex-field"
+score.core = [
+  "axis",
+  "vector",
+  "zone",
+  "title",
+  "room.state",
+  "matrix.state",
+  "team.state",
+  "seq.current"
 ]
 
-# Score-Ausgabe (erweitert)
-score.output = "score0.result"
-score.forward = "lan0"
-score.display = "screen0"
+score.seq = [
+  "mirror-flag",
+  "drop",
+  "ripple",
+  "light-transition",
+  "event-horizon",
+  "morphont-rise",
+  "flag-stabilize",
+  "seq.progress",
+  "seq.end"
+]
 
-# Bindungen
-score.bind.matrix = "matrix9x9"
-score.bind.room   = "port.room"
-score.bind.sli    = "SLI.layer"
-score.bind.ex     = "EX"
+score.metrics = [
+  "core-stability",
+  "seq-stability",
+  "vector-accuracy",
+  "zone-accuracy",
+  "team-sync",
+  "matrix-sync",
+  "room-sync",
+  "visual-integrity"
+]
 
+score.actions = [
+  "score-core",
+  "score-seq",
+  "score-vector",
+  "score-zone",
+  "score-team",
+  "score-room",
+  "score-matrix",
+  "score-visuals",
+  "score-grid",
+  "score-system"
+]
+
+score.autoscore = true
+score.interval = "3s"
+
+score.state = "active"

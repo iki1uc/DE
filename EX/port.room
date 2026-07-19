@@ -1,47 +1,86 @@
-# port.room — Kernel‑Logik-Schicht
+# port.room — Master‑Kernel‑Logic (Vector + Opta kompatibel)
 # Neutral, statisch, ohne Technik
 
 [ROOM]
-version = 1.0
-type = "kernel-logic"
+version = 3.0
+type = "master-kernel"
 mode = "static"
 
-# GEN → Kernel
-kernel.4u = "DA.html"
+# ============================
+# 1. GEN → Kernel‑Mapping
+# ============================
+kernel.4u  = "DA.html"
 kernel.WHY = "NE.html"
 kernel.onu = "BEN.html"
 
-# GEN → Vector
-vector.4u = "6d"
+# ============================
+# 2. GEN → Vector (vector-kompatibel)
+# ============================
+vector.4u  = "6d"
 vector.WHY = "12e"
 vector.onu = "6e"
 
-# GEN → Trigger
-trigger.4u = "C"
+# ============================
+# 3. GEN → Trigger
+# ============================
+trigger.4u  = "C"
 trigger.WHY = "X"
 trigger.onu = "Z"
 
-# GEN → Valid
-valid.4u = ["DE"]
+# ============================
+# 4. GEN → Valid‑Sets
+# ============================
+valid.4u  = ["DE"]
 valid.WHY = ["DE","EN"]
 valid.onu = ["DE","TR"]
 
-# GEN → Pfad
-path.4u = "D:/DE/"
+# ============================
+# 5. GEN → Pfade
+# ============================
+path.4u  = "D:/DE/"
 path.WHY = "D:/EN/"
 path.onu = "D:/TR/"
 
-# Pipeline-Zuweisung
-pipeline.4u = "PIPELINE.DE"
+# ============================
+# 6. Pipeline‑Zuweisung
+# ============================
+pipeline.4u  = "PIPELINE.DE"
 pipeline.WHY = "PIPELINE.EN"
 pipeline.onu = "PIPELINE.TR"
 
-# SLI-Layer Öffnungen
+# ============================
+# 7. SLI‑Layer Öffnungen
+# ============================
 open.DE = ["TR","EN"]
 open.EN = ["DE","TR"]
 open.TR = ["DE","EN"]
 
-# Sicherheit / Neutralität
+# ============================
+# 8. Opta‑Module (opta-kompatibel)
+# ============================
+opta.fit     = "port.fit"
+opta.fix     = "port.fix"
+opta.score   = "port.score"
+opta.capture = "port.capture"
+opta.allign  = "port.allign"
+opta.tweak   = "port.tweak"
+opta.win     = "port.win"
+
+# ============================
+# 9. Vector → Opta‑Mapping
+# ============================
+# 6d → DE‑Optimierung
+opta.map.6d = ["port.fit","port.fix","port.allign"]
+
+# 12e → EN‑Optimierung
+opta.map.12e = ["port.score","port.capture","port.tweak"]
+
+# 6e → TR‑Optimierung
+opta.map.6e = ["port.fix","port.win","port.tweak"]
+
+# ============================
+# 10. Sicherheit / Neutralität
+# ============================
 tracking = false
 external = false
 engine = false

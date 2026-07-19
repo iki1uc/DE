@@ -1,119 +1,76 @@
-<script src="EX/port.room"></script>
-<script src="SLI.layer"></script>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>GEN‑Matrix</title>
 
-<script src="KI/DE.js"></script>
-<script src="KI/TR.js"></script>
-<script src="KI/EN.js"></script>
-
-<script>
-const KI = {
-  DE: DE_KI,
-  TR: TR_KI,
-  EN: EN_KI
-};
-</script>
-
-<script>
-function runKI(gen){
-  const ki = KI[gen];
-  runMorph(ki.path, ki.files.model);
-}
-</script>
-
-<script>
-function SLI_Route(input){
-  EX.portRoom.active = SLI(input);
-}
-</script>
-
-<script>
-function multi(gen, times){
-  return Array(times).fill(gen);
+<style>
+body {
+  background:#000;
+  color:#0f0;
+  font-family:Consolas;
+  margin:0;
+  overflow:hidden;
 }
 
-async function autoComplete(gen){
-  const chain = multi(gen,2);
-  for(const g of chain){
-    await runMorph("PQ", g);
-  }
-  finalizeTask(gen);
+.ultra81 {
+  position:absolute;
+  top:20px;
+  left:20px;
+  display:grid;
+  grid-template-columns:repeat(9,1fr);
+  gap:4px;
+  width:360px;
 }
-</script>
+
+.cell {
+  background:#001100;
+  border:1px solid #003300;
+  padding:10px;
+  text-align:center;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.cell:hover {
+  background:#00ff00;
+  color:#000;
+  transform:scale(1.1);
+}
+
+.cell[data-gen="4u"] { color:#00ff00; }
+.cell[data-gen="WHY"] { color:#00ccff; }
+.cell[data-gen="onu"] { color:#ff0066; }
+</style>
+</head>
+
+<body>
+
+<div class="ultra81"></div>
 
 <script>
-let pyodideReady = false;
-let pyodide;
-
-async function loadPy() {
-  pyodide = await loadPyodide();
-  pyodideReady = true;
+/* NEUTRALER KERNEL-ROUTER */
+function loadKernel(gen){
+  if(gen === "4u") window.location.href = "DA.html";
+  if(gen === "WHY") window.location.href = "NE.html";
+  if(gen === "onu") window.location.href = "BEN.html";
 }
-loadPy();
-</script>
 
-<script>
-async function loadFiles() {
-  const res = await fetch("files.json");
-  const data = await res.json();
-  files = data.files;
-  buildMatrix();
-}
-loadFiles();
-</script>
+/* Matrix erzeugen (neutral, ohne Technik) */
+const matrixHTML = Array.from({length:81}, (_,i)=>{
+  const gen = i < 27 ? "4u" : i < 54 ? "WHY" : "onu";
+  return `<div class="cell" data-gen="${gen}">${gen}</div>`;
+}).join("");
 
-<script>
-function buildMatrix() {
-  const matrixHTML = Array.from({length:81}, (_,i)=>{
-    const gen = i < 27 ? "4u" : i < 54 ? "WHY" : "onu";
-    const file = files[i] || "—";
+document.querySelector(".ultra81").innerHTML = matrixHTML;
 
-    return `<div class="cell" data-gen="${gen}" data-file="${file}">
-              ${file}
-            </div>`;
-  }).join("");
-
-  document.querySelector(".ultra81").innerHTML = matrixHTML;
-
-  activateTriggers();
-}
-</script>
-
-<script>
-function activateTriggers() {
-  document.querySelectorAll(".cell").forEach(cell=>{
-    cell.addEventListener("click", async ()=>{
-
-      activeGEN = cell.dataset.gen;
-      active = true;
-
-      const file = cell.dataset.file;
-      const gen = cell.dataset.gen;
-
-      if(!pyodideReady) return;
-
-      const result = await pyodide.runPythonAsync(`
-file = "${file}"
-gen = "${gen}"
-
-if gen == "4u":
-    pipeline = {"A":[1,1,2],"B":[0,1,2],"Pair":[[1,0],[1,1],[2,2]]}
-elif gen == "WHY":
-    pipeline = {"A":[2,2,3],"B":[1,2,3],"Pair":[[2,1],[2,2],[3,3]]}
-else:
-    pipeline = {"A":[3,3,4],"B":[2,3,4],"Pair":[[3,2],[3,3],[4,4]]}
-
-output = {
-  "file": file,
-  "gen": gen,
-  "vector": "6d" if gen=="4u" else "12e" if gen=="WHY" else "6e",
-  "trigger": "C" if gen=="4u" else "X" if gen=="WHY" else "Z",
-  "pipeline": pipeline
-}
-output
-      `);
-
-      console.log("PY‑Output:", result);
-    });
+/* Klicks → Kernel laden */
+document.querySelectorAll(".cell").forEach(cell=>{
+  cell.addEventListener("click", ()=>{
+    loadKernel(cell.dataset.gen);
   });
-}
+});
 </script>
+
+</body>
+</html>

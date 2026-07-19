@@ -1,1 +1,8 @@
+[team0]
+version = 1.0
+type = "team-kernel"
+zero = 0
+
+team.rule = "Definiert wer mit wem arbeitet"
+team.bind = "status0"
 

@@ -1,0 +1,22 @@
+[status0]
+version = 1.0
+type = "auftrag-status"
+zero = 0
+
+status.modules = [
+  "port.team",
+  "port.visuals",
+  "port.grab",
+  "port.fix",
+  "port.edit"
+]
+
+status.rule = "Verknüpft Team, Visuals, Grab, Fix und Edit zu einem Auftrag-Cluster"
+
+status.forward = "lan0"
+status.output  = "screen0"
+
+bind.room   = "port.room"
+bind.matrix = "matrix9x9"
+bind.ex     = "EX"
+bind.sli    = "SLI.layer"

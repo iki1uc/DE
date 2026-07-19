@@ -1,0 +1,17 @@
+DE‑KI · Trigger‑System · Morph‑Maske
+
+GEN‑Stränge:
+4u → Core‑Vector: [1,1,2]
+WHY → Cross‑Vector: [0,1,2]
+onu → Zenith‑Vector: [[1,0],[1,1],[2,2]]
+
+Pipeline‑Morph:
+1 → 0
+1 → 1
+2 → 2
+
+Matrix‑Morph‑Output:
+[ [1→0], [1→1], [2→2] ]
+
+Final‑Maske:
+GEN + Vector + Morph = KI‑Trigger‑Matrix

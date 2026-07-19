@@ -1,23 +1,8 @@
-[screen0]
+[port.screen]
 version = 1.0
-type = "opta-screen"
+type = "display"
 zero = 0
 
-# Screen-Achsen (Darstellung)
-screen.axis   = ["X","Y","Z"]
-screen.vector = ["6d0","12e0","6e0"]
-
-# Screen-Bereich (EPOCHE)
-screen.zone.X = [0,1,2, 9,10,11, 18,19,20]
-screen.zone.Y = [27,28,29, 36,37,38, 45,46,47]
-screen.zone.Z = [54,55,56, 63,64,65, 72,73,74]
-
-# Screen-Regel
-screen.rule = "Zeigt den Zustand aus EPOCHE, RAUM und VECTOR im sichtbaren Layer"
-
-# Bindungen
-screen.bind.matrix = "matrix9x9"
+screen.rule = "Zeigt DE-Systemzustände an"
+screen.bind.matrix = "port.matrix"
 screen.bind.room   = "port.room"
-screen.bind.sli    = "SLI.layer"
-screen.bind.ex     = "EX"
-

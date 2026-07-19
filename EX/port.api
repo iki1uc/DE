@@ -1,1 +1,13 @@
+[portAPI0]
+version = 1.0
+type = "api-kernel"
+zero = 0
+
+api.rule = "Stellt Systemfunktionen nach außen bereit"
+api.methods = ["get", "post", "put", "delete"]
+
+api.bind.status = "status0"
+api.bind.room   = "port.room"
+api.bind.data   = "data0"
+api.bind.ex     = "EX"
 

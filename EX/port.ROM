@@ -1,41 +1,9 @@
-[rom0]
+[port.ROM]
 version = 1.0
-type = "read-only-morph"
+type = "memory"
 zero = 0
 
-# ROM-Achsen (statisch)
-rom.axis   = ["X","Y","Z"]
-rom.vector = ["6d0","12e0","6e0"]
+rom.rule = "Speichert DE-Systemzustände"
 
-# ROM-Bereich (EPOCHE)
-rom.zone.X = [0,1,2, 9,10,11, 18,19,20]
-rom.zone.Y = [27,28,29, 36,37,38, 45,46,47]
-rom.zone.Z = [54,55,56, 63,64,65, 72,73,74]
-
-# ROM-Regel
-rom.rule = "Speichert unveränderbare EX-Zustände und bildet den festen Morph-Anker"
-
-# ROM-Cluster
-rom.cluster.mode   = "ex-static"
-rom.cluster.anchor = 0
-rom.cluster.fields = [
-  "epoch-field",
-  "raum-field",
-  "vector-field",
-  "ex-field"
-]
-
-# ROM-Funktion
-rom.capture = "morph0.room"
-rom.lock    = true
-
-# Weiterleitung
-rom.forward = "lan0"
-rom.output  = "screen0"
-
-# Bindungen
-rom.bind.matrix = "matrix9x9"
-rom.bind.room   = "port.room"
-rom.bind.sli    = "SLI.layer"
-rom.bind.ex     = "EX"
-rom.bind.data   = "data0"
+rom.store = ["axis","vector","zone","title","seq"]
+rom.bind.data = "port.data"

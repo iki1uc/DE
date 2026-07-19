@@ -1,1 +1,53 @@
+# port.data — Kernel‑Daten-Schicht
+# Neutral, statisch, ohne Technik
+
+[GEN]
+DE = "4u"
+EN = "WHY"
+TR = "onu"
+
+[VECTOR]
+DE = "6d"
+EN = "12e"
+TR = "6e"
+
+[TRIGGER]
+DE = "C"
+EN = "X"
+TR = "Z"
+
+[VALID]
+DE = ["DE"]
+EN = ["DE","EN"]
+TR = ["DE","TR"]
+
+[PATH]
+DE = "D:/DE/"
+EN = "D:/EN/"
+TR = "D:/TR/"
+
+[PIPELINE.DE]
+A = [1,1,2]
+B = [0,1,2]
+Pair = [[1,0],[1,1],[2,2]]
+
+[PIPELINE.EN]
+A = [2,2,3]
+B = [1,2,3]
+Pair = [[2,1],[2,2],[3,3]]
+
+[PIPELINE.TR]
+A = [3,3,4]
+B = [2,3,4]
+Pair = [[3,2],[3,3],[4,4]]
+
+[KERNEL]
+DE = "DA.html"
+EN = "NE.html"
+TR = "BEN.html"
+
+[SLI.OPEN]
+DE = ["TR","EN"]
+EN = ["DE","TR"]
+TR = ["DE","EN"]
 

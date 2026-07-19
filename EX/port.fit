@@ -1,1 +1,18 @@
+[fit0]
+version = 1.0
+type = "opta-fit"
+zero = 0
+
+# Fit-Funktion (DE / 6d0)
+fit.axis   = "X"
+fit.vector = "6d0"
+
+# Fit-Bereich (EPOCHE)
+fit.zone = [0,1,2, 9,10,11, 18,19,20]
+
+# Fit-Regel
+fit.rule = "Passt DE-Zustände in den RAUM ein und erzeugt die Grundform"
+
+# Bindung
+fit.bind = "port.room"
 

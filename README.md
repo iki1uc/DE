@@ -171,3 +171,22 @@ SLI öffnet.
 EX erkennt.
 
 Nächster Kandidat
+
+[capture0]
+version = 1.0
+type = "opta-capture"
+zero = 0
+
+# Capture-Funktion (EN / 12e0)
+capture.axis   = "Y"
+capture.vector = "12e0"
+
+# Capture-Bereich (EPOCHE)
+capture.zone = [27,28,29, 36,37,38, 45,46,47]
+
+# Capture-Regel
+capture.rule = "Erfasst Score-relevante Zustände aus der EPOCHE"
+
+# Bindung
+capture.bind = "port.room"
+

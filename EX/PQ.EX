@@ -1,15 +1,14 @@
 [PQ.EX]
 version = 1.0
-type = "ex-kernel"
+type = "kernel"
 zero = 0
 
-pq.rule = "Pflegt Vectoren, Module, Titel und OneDrive-Routing"
-pq.mode = ["a","b","c","ab","r"]
+ex.rule = "DE-Kernel für Vector-, Achsen- und Zonenverarbeitung"
 
-pq.bind.ex     = "EX"          # EX-Schicht
-pq.bind.matrix = "matrix9x9"   # EPOCHE
-pq.bind.room   = "port.room"   # RAUM
-pq.bind.sli    = "SLI.layer"   # SLI-Schicht
-pq.bind.data   = "data0"       # Daten
-pq.bind.lan    = "lan0"        # Routing
-pq.bind.screen = "screen0"     # Anzeige
+ex.bind.pq0   = "port.PQ0"
+ex.bind.room  = "port.room"
+ex.bind.data  = "port.data"
+ex.bind.matrix= "port.matrix"
+ex.bind.screen= "port.screen"
+
+ex.mode = ["vector","axis","zone","title","route"]

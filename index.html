@@ -1,97 +1,11 @@
-import numpy as np
-
-# --- PQ Laptop Messung ---
-def get_PQ():
-    # Hier kommt dein Laptop-Wert rein
-    # z.B. Tastatur, Sensor, Systemwert, etc.
-    return 1.0  # Dummy – wird ersetzt
-
-# --- NC Attack ---
-def nc_dot(v1, v2):
-    return np.dot(v1, v2)
-
-def nc_matmul(m1, m2):
-    return np.matmul(m1, m2)
-
-# --- Ableitungen ---
-def ableitungen(DE, TR, EN, DA, NE, BEN, F1, F2):
-    A1 = (DE + TR + EN) / 3
-    A2 = (DA + NE + BEN) / 3
-    A3 = (F1 + F2) / 2
-    return A1, A2, A3
-
-# --- 3x1 Argument-Vektor ---
-def argument_vektor(A1, A2, A3):
-    return np.array([A1, A2, A3]).reshape(3,1)
-
-# --- 6x6 Hauptstellung ---
-def matrix_6x6(DE, TR, EN, DA, NE, BEN):
-    s6 = np.array([DE, TR, EN, DA, NE, BEN])
-    return np.outer(s6, s6)
-
-# --- 3x3 Nahem-Raster ---
-def matrix_3x3(DE, TR, EN):
-    s3 = np.array([DE, TR, EN])
-    return np.outer(s3, s3)
-
-# --- 8x8 Bewegungs-Nahem ---
-def matrix_8x8(DE, TR, EN, DA, NE, BEN, F1, F2):
-    s8 = np.array([DE, TR, EN, DA, NE, BEN, F1, F2])
-    return np.outer(s8, s8)
-
-# --- Vectoring (Home / Ort / Lage) ---
-def vectoring(home, ort, lage):
-    return np.array([home, ort, lage]).reshape(3,1)
-
-# --- DE-Respo ---
-def DE_respo(A1, A2, A3, trigger, attack_value, PQ):
-    return f"DE-Respo: {trigger}-Attack → A1={A1:.3f}, A2={A2:.3f}, A3={A3:.3f}, NC={attack_value:.3f}, PQ={PQ:.3f}"
-
-# --- Trigger Engine ---
-def trigger(trigger, DE, TR, EN, DA, NE, BEN, F1, F2, home, ort, lage):
-
-    # PQ wird AUTOMATISCH abgefragt
-    PQ = get_PQ()
-
-    # Ableitungen
-    A1, A2, A3 = ableitungen(DE, TR, EN, DA, NE, BEN, F1, F2)
-
-    # NC Attack + PQ Einfluss
-    base_vec = np.array([DE, TR, EN])
-    attack_value = nc_dot(base_vec, base_vec) + PQ
-
-    if trigger == "C":
-        return {
-            "Trigger": "C",
-            "PQ": PQ,
-            "3x1": argument_vektor(A1, A2, A3),
-            "Vectoring": vectoring(home, ort, lage),
-            "Respo": DE_respo(A1, A2, A3, "Core", attack_value, PQ)
-        }
-
-    if trigger == "X":
-        m6 = matrix_6x6(DE, TR, EN, DA, NE, BEN)
-        m8 = matrix_8x8(DE, TR, EN, DA, NE, BEN, F1, F2)
-        return {
-            "Trigger": "X",
-            "PQ": PQ,
-            "6x6": m6,
-            "8x8": m8,
-            "X-Exchange": np.flip(m8, axis=1),
-            "Vectoring": vectoring(home, ort, lage),
-            "Respo": DE_respo(A1, A2, A3, "Cross", attack_value, PQ)
-        }
-
-    if trigger == "Z":
-        m3 = matrix_3x3(DE, TR, EN)
-        m8 = matrix_8x8(DE, TR, EN, DA, NE, BEN, F1, F2)
-        return {
-            "Trigger": "Z",
-            "PQ": PQ,
-            "3x3": m3,
-            "8x8": m8,
-            "Vectoring": vectoring(home, ort, lage),
-            "Respo": DE_respo(A1, A2, A3, "Zenith", attack_value, PQ)
-        }
-
-    return {"Error": "Unbekannter Trigger"}
+# --- Pipeline 4 (A0,A1,A2 & B0,B1,B2) ---
+def pipeline4(A0, A1, A2, B0, B1, B2):
+    return {
+        "A": [A0, A1, A2],
+        "B": [B0, B1, B2],
+        "Pipeline": [
+            (A0, B0),
+            (A1, B1),
+            (A2, B2)
+        ]
+    }

@@ -1,1 +1,28 @@
+# port.lan — Kernel‑Routing‑Layer
+# Neutral, statisch, ohne Technik
+
+[LAN]
+version = 1.0
+type = "kernel-router"
+mode = "static"
+
+# GEN → Kernel‑Zuweisung
+route.4u = "DA.html"
+route.WHY = "NE.html"
+route.onu = "BEN.html"
+
+# SLI‑Routing (Kernel → Kernel)
+open.DE = ["TR", "EN"]
+open.EN = ["DE", "TR"]
+open.TR = ["DE", "EN"]
+
+# Kernel‑Namen
+kernel.DE = "DA.html"
+kernel.EN = "NE.html"
+kernel.TR = "BEN.html"
+
+# Sicherheit / Neutralität
+tracking = false
+external = false
+engine = false
 

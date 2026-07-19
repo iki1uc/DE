@@ -1,1 +1,11 @@
+[user0]
+version = 1.0
+type = "user-kernel"
+zero = 0
 
+user.rule = "Definiert beteiligte Benutzer im Auftrag"
+user.roles = ["creator", "editor", "viewer", "runner"]
+
+user.bind.status = "status0"
+user.bind.api    = "portAPI0"
+user.bind.room   = "port.room"

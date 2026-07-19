@@ -1,8 +1,10 @@
 <script src="EX/port.room"></script>
 <script src="SLI.layer"></script>
+
 <script src="KI/DE.js"></script>
 <script src="KI/TR.js"></script>
 <script src="KI/EN.js"></script>
+
 <script>
 const KI = {
   DE: DE_KI,
@@ -10,17 +12,20 @@ const KI = {
   EN: EN_KI
 };
 </script>
+
 <script>
 function runKI(gen){
   const ki = KI[gen];
   runMorph(ki.path, ki.files.model);
 }
 </script>
+
 <script>
 function SLI_Route(input){
   EX.portRoom.active = SLI(input);
 }
 </script>
+
 <script>
 function multi(gen, times){
   return Array(times).fill(gen);
@@ -34,6 +39,7 @@ async function autoComplete(gen){
   finalizeTask(gen);
 }
 </script>
+
 <script>
 let pyodideReady = false;
 let pyodide;
@@ -44,6 +50,7 @@ async function loadPy() {
 }
 loadPy();
 </script>
+
 <script>
 async function loadFiles() {
   const res = await fetch("files.json");
@@ -53,6 +60,7 @@ async function loadFiles() {
 }
 loadFiles();
 </script>
+
 <script>
 function buildMatrix() {
   const matrixHTML = Array.from({length:81}, (_,i)=>{
@@ -69,6 +77,7 @@ function buildMatrix() {
   activateTriggers();
 }
 </script>
+
 <script>
 function activateTriggers() {
   document.querySelectorAll(".cell").forEach(cell=>{

@@ -1,0 +1,17 @@
+[win0]
+version = 1.0
+type = "opta-win"
+zero = 0
+
+# Win-Funktion (TR / 6e0)
+win.axis   = "Z"
+win.vector = "6e0"
+
+# Win-Bereich (EPOCHE)
+win.zone = [54,55,56, 63,64,65, 72,73,74]
+
+# Win-Regel
+win.rule = "Schließt TR-Zustände ab und erzeugt den finalen Weiterleitungswert"
+
+# Bindung
+win.bind = "port.room"

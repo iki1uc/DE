@@ -1,0 +1,11 @@
+function SLI(input){
+  if(input === "4u"){
+    return ["TR","EN"];   // beide gültig
+  }
+  if(input === "onu"){
+    return ["DE","TR"];   // TR-KI korrekt
+  }
+  if(input === "WHY"){
+    return ["DE","EN"];   // EN-KI korrekt
+  }
+}

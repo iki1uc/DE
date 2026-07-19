@@ -1,76 +1,71 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="DE">
 <head>
-<meta charset="UTF-8">
-<title>GEN‑Matrix</title>
+  <meta charset="UTF-8">
+  <title>DE Portal – WELT System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-body {
-  background:#000;
-  color:#0f0;
-  font-family:Consolas;
-  margin:0;
-  overflow:hidden;
-}
-
-.ultra81 {
-  position:absolute;
-  top:20px;
-  left:20px;
-  display:grid;
-  grid-template-columns:repeat(9,1fr);
-  gap:4px;
-  width:360px;
-}
-
-.cell {
-  background:#001100;
-  border:1px solid #003300;
-  padding:10px;
-  text-align:center;
-  cursor:pointer;
-  transition:0.2s;
-}
-
-.cell:hover {
-  background:#00ff00;
-  color:#000;
-  transform:scale(1.1);
-}
-
-.cell[data-gen="4u"] { color:#00ff00; }
-.cell[data-gen="WHY"] { color:#00ccff; }
-.cell[data-gen="onu"] { color:#ff0066; }
-</style>
+  <!-- DE Startsprache -->
+  <script>
+    window.WELT_CURRENT_LANGUAGE = "DE";
+  </script>
 </head>
 
 <body>
 
-<div class="ultra81"></div>
+  <!-- Sprachsystem -->
+  <div id="language-index">
+    <button data-lang="DE">Deutsch</button>
+    <button data-lang="TR">Türkçe</button>
+    <button data-lang="EN">English</button>
 
-<script>
-/* NEUTRALER KERNEL-ROUTER */
-function loadKernel(gen){
-  if(gen === "4u") window.location.href = "DA.html";
-  if(gen === "WHY") window.location.href = "NE.html";
-  if(gen === "onu") window.location.href = "BEN.html";
-}
+    <!-- frei wählbare Slots -->
+    <button data-lang="DA">du</button>
+    <button data-lang="NE">er</button>
+    <button data-lang="BEN">ich</button>
+  </div>
 
-/* Matrix erzeugen (neutral, ohne Technik) */
-const matrixHTML = Array.from({length:81}, (_,i)=>{
-  const gen = i < 27 ? "4u" : i < 54 ? "WHY" : "onu";
-  return `<div class="cell" data-gen="${gen}">${gen}</div>`;
-}).join("");
+  <!-- Hauptanzeige -->
+  <div id="portal-screen"></div>
 
-document.querySelector(".ultra81").innerHTML = matrixHTML;
+  <!-- Sprachumschalter -->
+  <script>
+    function WELT_language_switch(lang) {
+      window.WELT_CURRENT_LANGUAGE = lang;
+      console.log("Sprache gewechselt zu:", lang);
+      loadLanguageRoom(lang);
+    }
 
-/* Klicks → Kernel laden */
-document.querySelectorAll(".cell").forEach(cell=>{
-  cell.addEventListener("click", ()=>{
-    loadKernel(cell.dataset.gen);
-  });
-});
-</script>
+    document.querySelectorAll('#language-index button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lang = btn.getAttribute('data-lang');
+        WELT_language_switch(lang);
+      });
+    });
+  </script>
+
+  <!-- DE + WELT + EDEN + HI + PORT Loader -->
+  <script>
+    function loadLanguageRoom(lang) {
+      let file = "";
+
+      switch(lang) {
+        case "DE": file = "DE.room"; break;
+        case "TR": file = "TR.room"; break;
+        case "EN": file = "EN.room"; break;
+
+        case "DA": file = "DA.html"; break;
+        case "NE": file = "NE.html"; break;
+        case "BEN": file = "BEN.html"; break;
+      }
+
+      document.getElementById("portal-screen").innerText =
+        "Lade: " + file + " … (DE + WELT + EDEN aktiv)";
+    }
+
+    // Start in DE
+    loadLanguageRoom("DE");
+  </script>
 
 </body>
 </html>

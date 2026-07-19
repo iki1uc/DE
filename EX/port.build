@@ -1,48 +1,69 @@
-[build0]
+[port.build]
 version = 1.0
-type = "construct-kernel"
+type = "builder-core"
 zero = 0
 
-# Build-Achsen (DE / EN / TR)
-build.axis   = ["X","Y","Z"]
-build.vector = ["6d0","12e0","6e0"]
+build.rule = "Erstellt, konstruiert und generiert DE-Systemmodule, Sequenzen, Visuals und Strukturen"
 
-# Build-Bereich (EPOCHE)
-build.zone.X = [0,1,2, 9,10,11, 18,19,20]
-build.zone.Y = [27,28,29, 36,37,38, 45,46,47]
-build.zone.Z = [54,55,56, 63,64,65, 72,73,74]
+build.bind.pq      = "port.PQ0"
+build.bind.ex      = "PQ.EX"
+build.bind.room    = "port.room"
+build.bind.matrix  = "port.matrix"
+build.bind.data    = "port.data"
+build.bind.status  = "port.status"
+build.bind.team    = "port.team"
+build.bind.screen  = "port.screen"
+build.bind.visuals = "port.visuals"
+build.bind.grid    = "port.9x9"
+build.bind.win0    = "port.win0"
+build.bind.user    = "port.user"
+build.bind.fit     = "port.fit"
+build.bind.fix     = "port.fix"
+build.bind.allign  = "port.allign"
+build.bind.capture = "port.capture"
 
-# Build-Regel
-build.rule = "Erzeugt neue Module, Räume, Cluster und Epochen-Zustände aus bestehenden Systemfeldern"
+build.mode = ["auto","manual","seq","vector","zone","state","visual","team","core","structure"]
 
-# Build-Cluster
-build.cluster.mode   = "epoch-raum-vector"
-build.cluster.anchor = 0
-build.cluster.fields = [
-  "epoch-field",
-  "raum-field",
-  "vector-field",
-  "opta-field",
-  "sli-field",
-  "ex-field"
+build.core = [
+  "axis",
+  "vector",
+  "zone",
+  "title",
+  "room.state",
+  "matrix.state",
+  "team.state",
+  "seq.current"
 ]
 
-# Build-Funktion
-build.create = [
-  "module",
-  "raum",
-  "cluster",
-  "epoch-state"
+build.seq = [
+  "mirror-flag",
+  "drop",
+  "ripple",
+  "light-transition",
+  "event-horizon",
+  "morphont-rise",
+  "flag-stabilize",
+  "seq.progress",
+  "seq.end"
 ]
 
-# Weiterleitung
-build.forward = "lan0"
-build.output  = "screen0"
+build.actions = [
+  "build-core",
+  "build-seq",
+  "build-vector",
+  "build-zone",
+  "build-room",
+  "build-matrix",
+  "build-team",
+  "build-status",
+  "build-screen",
+  "build-visuals",
+  "build-grid",
+  "build-window",
+  "build-structure"
+]
 
-# Bindungen
-build.bind.matrix = "matrix9x9"
-build.bind.room   = "port.room"
-build.bind.sli    = "SLI.layer"
-build.bind.ex     = "EX"
-build.bind.data   = "data0"
+build.autobuild = true
+build.interval = "6s"
 
+build.state = "active"

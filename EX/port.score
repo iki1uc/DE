@@ -1,1 +1,41 @@
+[score0]
+version = 1.1
+type = "opta-score"
+zero = 0
+
+# Score-Achse (EN / 12e0)
+score.axis   = "Y"
+score.vector = "12e0"
+
+# Score-Bereich (EPOCHE)
+score.zone = [27,28,29, 36,37,38, 45,46,47]
+
+# Score-Regel (erweitert)
+score.rule = "Ermittelt den Bewertungswert aus EN-Zuständen und erzeugt den Score-Cluster"
+
+# Score-Cluster (erweitert)
+score.cluster.top6 = true
+score.cluster.mode = "epoch-linear"
+score.cluster.anchor = 0
+
+# Score-Berechnung (erweitert)
+score.calc = [
+  "epoch-field",
+  "raum-field",
+  "vector-field",
+  "opta-field",
+  "sli-field",
+  "ex-field"
+]
+
+# Score-Ausgabe (erweitert)
+score.output = "score0.result"
+score.forward = "lan0"
+score.display = "screen0"
+
+# Bindungen
+score.bind.matrix = "matrix9x9"
+score.bind.room   = "port.room"
+score.bind.sli    = "SLI.layer"
+score.bind.ex     = "EX"
 

@@ -1,29 +1,18 @@
-<div class="ultra81">
-  ${Array.from({length:81}, (_,i)=>`<div class="cell">${i+1}</div>`).join("")}
-</div>
+<script>
+async function loadFiles() {
+  const res = await fetch("files.json");
+  const data = await res.json();
 
-<style>
-.ultra81 {
-  display:grid;
-  grid-template-columns:repeat(9,1fr);
-  gap:4px;
-  width:80%;
-  margin:auto;
-  margin-top:40px;
+  const files = data.files;
+
+  // GEN‑Zuweisung
+  const genMap = files.map((f, i) => {
+    if (i < 27) return {file:f, gen:"4u"};
+    if (i < 54) return {file:f, gen:"WHY"};
+    return {file:f, gen:"onu"};
+  });
+
+  console.log("GEN‑Mapping:", genMap);
 }
-.cell {
-  background:#001100;
-  color:#00ff00;
-  border:1px solid #003300;
-  padding:10px;
-  text-align:center;
-  font-family:Consolas;
-  transition:0.2s;
-}
-.cell:hover {
-  background:#00ff00;
-  color:#000;
-  transform:scale(1.1);
-  box-shadow:0 0 10px #00ff00;
-}
-</style>
+loadFiles();
+</script>

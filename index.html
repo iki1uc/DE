@@ -1,54 +1,186 @@
-{
-  "files": [
-    "t",
-    "T",
-    "1",
-    "EX"
-  ]
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>DE‑KI · GEN‑Matrix · Pipeline‑4</title>
+
+<style>
+body {
+  background:#000;
+  color:#0f0;
+  font-family:Consolas;
+  margin:0;
+  overflow:hidden;
 }
+
+/* 81‑Matrix */
+.ultra81 {
+  position:absolute;
+  top:20px;
+  left:20px;
+  display:grid;
+  grid-template-columns:repeat(9,1fr);
+  gap:4px;
+  width:360px;
+}
+.cell {
+  background:#001100;
+  border:1px solid #003300;
+  padding:10px;
+  text-align:center;
+  transition:0.2s;
+  cursor:pointer;
+}
+
+/* GEN‑Farben */
+.cell[data-gen="4u"] { color:#00ff00; } /* DE */
+.cell[data-gen="WHY"] { color:#00ccff; } /* EN */
+.cell[data-gen="onu"] { color:#ff0066; } /* TR */
+
+/* Hover‑Effekt */
+.cell:hover {
+  background:#00ff00;
+  color:#000;
+  transform:scale(1.1);
+}
+
+/* Matrix‑Canvas */
+#matrix {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:-1;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="ultra81"></div>
+
+<script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+
 <script>
+/* Python‑Engine laden */
+let pyodideReady = false;
+let pyodide;
+
+async function loadPy() {
+  pyodide = await loadPyodide();
+  pyodideReady = true;
+}
+loadPy();
+
+/* Dateien laden */
+let files = [];
+
 async function loadFiles() {
   const res = await fetch("files.json");
   const data = await res.json();
-
-  const files = data.files;
-
-  // GEN‑Zuweisung
-  const genMap = files.map((f, i) => {
-    if (i < 27) return {file:f, gen:"4u"};
-    if (i < 54) return {file:f, gen:"WHY"};
-    return {file:f, gen:"onu"};
-  });
-
-  console.log("GEN‑Mapping:", genMap);
+  files = data.files;
+  buildMatrix();
 }
 loadFiles();
-</script>
-<div class="ultra81">
-  ${Array.from({length:81}, (_,i)=>{
+
+/* Matrix bauen */
+function buildMatrix() {
+  const matrixHTML = Array.from({length:81}, (_,i)=>{
     const gen = i < 27 ? "4u" : i < 54 ? "WHY" : "onu";
     const file = files[i] || "—";
-    return `<div class="cell" data-gen="${gen}" data-file="${file}">${file}</div>`;
-  }).join("")}
-</div>
-document.querySelectorAll(".cell").forEach(cell=>{
-  cell.addEventListener("click", async ()=>{
-    const file = cell.dataset.file;
-    const gen = cell.dataset.gen;
 
-    const result = await pyodide.runPythonAsync(`
+    return `<div class="cell" data-gen="${gen}" data-file="${file}">
+              ${file}
+            </div>`;
+  }).join("");
+
+  document.querySelector(".ultra81").innerHTML = matrixHTML;
+
+  activateTriggers();
+}
+
+/* Matrix‑Animation */
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const chars = "01XZC4uWHYonu";
+const fontSize = 16;
+const columns = canvas.width / fontSize;
+const drops = Array(Math.floor(columns)).fill(0);
+
+let active = false;
+let activeGEN = null;
+
+function draw() {
+  if (!active) return;
+
+  ctx.fillStyle = "rgba(0,0,0,0.05)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle =
+    activeGEN === "4u" ? "#00ff00" :
+    activeGEN === "WHY" ? "#00ccff" :
+    activeGEN === "onu" ? "#ff0066" : "#0f0";
+
+  ctx.font = fontSize + "px monospace";
+
+  drops.forEach((y, i) => {
+    const text = chars[Math.floor(Math.random() * chars.length)];
+    ctx.fillText(text, i * fontSize, y * fontSize);
+
+    if (y * fontSize > canvas.height && Math.random() > 0.975) {
+      drops[i] = 0;
+    }
+    drops[i]++;
+  });
+}
+setInterval(draw, 33);
+
+/* Trigger‑System + Python‑Morph‑Engine */
+function activateTriggers() {
+  document.querySelectorAll(".cell").forEach(cell=>{
+    cell.addEventListener("click", async ()=>{
+
+      activeGEN = cell.dataset.gen;
+      active = true;
+
+      const file = cell.dataset.file;
+      const gen = cell.dataset.gen;
+
+      if(!pyodideReady) return;
+
+      const result = await pyodide.runPythonAsync(`
 file = "${file}"
 gen = "${gen}"
+
+# Pipeline‑4 Morph‑Engine
+if gen == "4u":
+    pipeline = {"A":[1,1,2],"B":[0,1,2],"Pair":[[1,0],[1,1],[2,2]]}
+elif gen == "WHY":
+    pipeline = {"A":[2,2,3],"B":[1,2,3],"Pair":[[2,1],[2,2],[3,3]]}
+else:
+    pipeline = {"A":[3,3,4],"B":[2,3,4],"Pair":[[3,2],[3,3],[4,4]]}
 
 output = {
   "file": file,
   "gen": gen,
   "vector": "6d" if gen=="4u" else "12e" if gen=="WHY" else "6e",
-  "trigger": "C" if gen=="4u" else "X" if gen=="WHY" else "Z"
+  "trigger": "C" if gen=="4u" else "X" if gen=="WHY" else "Z",
+  "pipeline": pipeline
 }
 output
-    `);
+      `);
 
-    console.log("Python‑Output:", result);
+      console.log("PY‑Output:", result);
+    });
   });
-});
+}
+</script>
+
+</body>
+</html>

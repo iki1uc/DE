@@ -1,1 +1,38 @@
+[win0]
+version = 1.1
+type = "opta-win"
+zero = 0
+
+# Win-Funktion (TR / 6e0)
+win.axis   = "Z"
+win.vector = "6e0"
+
+# Win-Bereich (EPOCHE)
+win.zone = [54,55,56, 63,64,65, 72,73,74]
+
+# Win-Regel (erweitert)
+win.rule = "Schließt TR-Zustände ab, erzeugt den finalen Wert und leitet ihn weiter"
+
+# Win-Cluster
+win.cluster.mode   = "epoch-final"
+win.cluster.anchor = 0
+win.cluster.fields = [
+  "epoch-field",
+  "raum-field",
+  "vector-field",
+  "opta-field",
+  "sli-field",
+  "ex-field"
+]
+
+# Weiterleitung
+win.forward = "lan0"
+win.output  = "screen0"
+
+# Bindungen
+win.bind.matrix = "matrix9x9"
+win.bind.room   = "port.room"
+win.bind.sli    = "SLI.layer"
+win.bind.ex     = "EX"
+win.bind.data   = "data0"
 

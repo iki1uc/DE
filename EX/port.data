@@ -1,53 +1,23 @@
-# port.data — Kernel‑Daten-Schicht
-# Neutral, statisch, ohne Technik
+[data0]
+version = 1.0
+type = "data-kernel"
+zero = 0
 
-[GEN]
-DE = "4u"
-EN = "WHY"
-TR = "onu"
+# Daten-Achsen (linear)
+data.axis   = ["X","Y","Z"]
+data.vector = ["6d0","12e0","6e0"]
 
-[VECTOR]
-DE = "6d"
-EN = "12e"
-TR = "6e"
+# Daten-Bereich (EPOCHE)
+data.zone.X = [0,1,2, 9,10,11, 18,19,20]
+data.zone.Y = [27,28,29, 36,37,38, 45,46,47]
+data.zone.Z = [54,55,56, 63,64,65, 72,73,74]
 
-[TRIGGER]
-DE = "C"
-EN = "X"
-TR = "Z"
+# Pipeline-Regel (linear)
+data.rule = "Pipeline A→B verarbeitet EPOCHE-Zustände linear und 0-verankert"
 
-[VALID]
-DE = ["DE"]
-EN = ["DE","EN"]
-TR = ["DE","TR"]
-
-[PATH]
-DE = "D:/DE/"
-EN = "D:/EN/"
-TR = "D:/TR/"
-
-[PIPELINE.DE]
-A = [1,1,2]
-B = [0,1,2]
-Pair = [[1,0],[1,1],[2,2]]
-
-[PIPELINE.EN]
-A = [2,2,3]
-B = [1,2,3]
-Pair = [[2,1],[2,2],[3,3]]
-
-[PIPELINE.TR]
-A = [3,3,4]
-B = [2,3,4]
-Pair = [[3,2],[3,3],[4,4]]
-
-[KERNEL]
-DE = "DA.html"
-EN = "NE.html"
-TR = "BEN.html"
-
-[SLI.OPEN]
-DE = ["TR","EN"]
-EN = ["DE","TR"]
-TR = ["DE","EN"]
-
+# Bindungen
+data.bind.matrix = "matrix9x9"
+data.bind.room   = "port.room"
+data.bind.lan    = "lan0"
+data.bind.sli    = "SLI.layer"
+data.bind.ex     = "EX"

@@ -1,1 +1,8 @@
+[fix0]
+version = 1.0
+type = "fix-kernel"
+zero = 0
+
+fix.rule = "Stabilisiert Auftrag und übergibt an status0"
+fix.bind = "status0"
 

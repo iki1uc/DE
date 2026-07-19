@@ -1,23 +1,7 @@
-[data0]
+[port.data]
 version = 1.0
-type = "data-kernel"
+type = "data"
 zero = 0
 
-# Daten-Achsen (linear)
-data.axis   = ["X","Y","Z"]
-data.vector = ["6d0","12e0","6e0"]
-
-# Daten-Bereich (EPOCHE)
-data.zone.X = [0,1,2, 9,10,11, 18,19,20]
-data.zone.Y = [27,28,29, 36,37,38, 45,46,47]
-data.zone.Z = [54,55,56, 63,64,65, 72,73,74]
-
-# Pipeline-Regel (linear)
-data.rule = "Pipeline A→B verarbeitet EPOCHE-Zustände linear und 0-verankert"
-
-# Bindungen
-data.bind.matrix = "matrix9x9"
-data.bind.room   = "port.room"
-data.bind.lan    = "lan0"
-data.bind.sli    = "SLI.layer"
-data.bind.ex     = "EX"
+data.rule = "DE-Datenpool für EX, PQ und MOVE"
+data.store = ["titles","vectors","zones","seq","room"]

@@ -1,8 +1,60 @@
-[visuals0]
+[port.visuals]
 version = 1.0
-type = "visual-kernel"
+type = "visual-core"
 zero = 0
 
-visuals.rule = "Erstellt visuelle Darstellung des Auftrags"
-visuals.bind = "status0"
+visuals.rule = "Erzeugt und verwaltet DE-Visuals, Layer, Effekte und Darstellungen"
 
+visuals.bind.screen = "port.screen"
+visuals.bind.room   = "port.room"
+visuals.bind.matrix = "port.matrix"
+visuals.bind.data   = "port.data"
+visuals.bind.status = "port.status"
+visuals.bind.team   = "port.team"
+visuals.bind.pq     = "port.PQ0"
+visuals.bind.ex     = "PQ.EX"
+
+visuals.mode = ["auto","seq","vector","zone","state","layer"]
+
+visuals.layers = [
+  "core",
+  "seq",
+  "vector",
+  "zone",
+  "status",
+  "team",
+  "effects"
+]
+
+visuals.default.layer = "core"
+
+visuals.effects = [
+  "fade-in",
+  "fade-out",
+  "pulse",
+  "highlight",
+  "wave",
+  "morph",
+  "transition-light"
+]
+
+visuals.view.core = [
+  "axis",
+  "vector",
+  "zone",
+  "title",
+  "room.state",
+  "matrix.state"
+]
+
+visuals.view.seq = [
+  "mirror-flag",
+  "drop",
+  "ripple",
+  "light-transition",
+  "event-horizon",
+  "morphont-rise",
+  "flag-stabilize"
+]
+
+visuals.state = "active"

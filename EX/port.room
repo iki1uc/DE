@@ -1,41 +1,47 @@
-const DE_KI = {
-  gen: "4u",
-  valid: ["DE"],        // DE ist Basis
-  vector: "6d",         // DE‑Vector
-  trigger: "C",         // DE‑Trigger
-  path: "D:/DE/",       // DE‑Ordner
-  files: {
-    model: "model.safetensors",
-    config: "config.json",
-    tokenizer: "tokenizer.json"
-  }
-};
-if(input === "4u"){
-  activeRoutes = ["TR","EN"];
-}
-valid: ["DE"]
-4u → 6d
+# port.room — Kernel‑Logik-Schicht
+# Neutral, statisch, ohne Technik
 
-WHY → 12e
+[ROOM]
+version = 1.0
+type = "kernel-logic"
+mode = "static"
 
-onu → 6e
-vector: "6d"
-DE → C
+# GEN → Kernel
+kernel.4u = "DA.html"
+kernel.WHY = "NE.html"
+kernel.onu = "BEN.html"
 
-EN → X
+# GEN → Vector
+vector.4u = "6d"
+vector.WHY = "12e"
+vector.onu = "6e"
 
-TR → Z
-trigger: "C"
-TR → D:/TR/
+# GEN → Trigger
+trigger.4u = "C"
+trigger.WHY = "X"
+trigger.onu = "Z"
 
-EN → D:/EN/
-path: "D:/DE/"
-EX/port.room
-EX.portRoom.DE = DE_KI;
-function SLI_Route(input){
-  EX.portRoom.active = SLI(input);
-}
-const DE2 = multi("4u",2);
-["4u","4u"]
-autoComplete("4u");
+# GEN → Valid
+valid.4u = ["DE"]
+valid.WHY = ["DE","EN"]
+valid.onu = ["DE","TR"]
 
+# GEN → Pfad
+path.4u = "D:/DE/"
+path.WHY = "D:/EN/"
+path.onu = "D:/TR/"
+
+# Pipeline-Zuweisung
+pipeline.4u = "PIPELINE.DE"
+pipeline.WHY = "PIPELINE.EN"
+pipeline.onu = "PIPELINE.TR"
+
+# SLI-Layer Öffnungen
+open.DE = ["TR","EN"]
+open.EN = ["DE","TR"]
+open.TR = ["DE","EN"]
+
+# Sicherheit / Neutralität
+tracking = false
+external = false
+engine = false

@@ -1,38 +1,49 @@
-[win0]
-version = 1.1
-type = "opta-win"
+[port.win]
+version = 1.0
+type = "window-core"
 zero = 0
 
-# Win-Funktion (TR / 6e0)
-win.axis   = "Z"
-win.vector = "6e0"
+win.rule = "Verwaltet DE-Fenster, Ansichten, Layer und Systemanzeigen"
 
-# Win-Bereich (EPOCHE)
-win.zone = [54,55,56, 63,64,65, 72,73,74]
+win.bind.screen = "port.screen"
+win.bind.room   = "port.room"
+win.bind.matrix = "port.matrix"
+win.bind.data   = "port.data"
+win.bind.status = "port.status"
+win.bind.team   = "port.team"
+win.bind.pq     = "port.PQ0"
+win.bind.ex     = "PQ.EX"
 
-# Win-Regel (erweitert)
-win.rule = "Schließt TR-Zustände ab, erzeugt den finalen Wert und leitet ihn weiter"
+win.mode = ["auto","manual","layer","seq","state"]
 
-# Win-Cluster
-win.cluster.mode   = "epoch-final"
-win.cluster.anchor = 0
-win.cluster.fields = [
-  "epoch-field",
-  "raum-field",
-  "vector-field",
-  "opta-field",
-  "sli-field",
-  "ex-field"
+win.layers = [
+  "core",
+  "seq",
+  "vector",
+  "zone",
+  "status",
+  "team"
 ]
 
-# Weiterleitung
-win.forward = "lan0"
-win.output  = "screen0"
+win.default.layer = "core"
 
-# Bindungen
-win.bind.matrix = "matrix9x9"
-win.bind.room   = "port.room"
-win.bind.sli    = "SLI.layer"
-win.bind.ex     = "EX"
-win.bind.data   = "data0"
+win.view.core = [
+  "axis",
+  "vector",
+  "zone",
+  "title",
+  "room.state",
+  "matrix.state"
+]
 
+win.view.seq = [
+  "mirror-flag",
+  "drop",
+  "ripple",
+  "light-transition",
+  "event-horizon",
+  "morphont-rise",
+  "flag-stabilize"
+]
+
+win.state = "active"

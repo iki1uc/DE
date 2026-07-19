@@ -1,1 +1,48 @@
+[build0]
+version = 1.0
+type = "construct-kernel"
+zero = 0
+
+# Build-Achsen (DE / EN / TR)
+build.axis   = ["X","Y","Z"]
+build.vector = ["6d0","12e0","6e0"]
+
+# Build-Bereich (EPOCHE)
+build.zone.X = [0,1,2, 9,10,11, 18,19,20]
+build.zone.Y = [27,28,29, 36,37,38, 45,46,47]
+build.zone.Z = [54,55,56, 63,64,65, 72,73,74]
+
+# Build-Regel
+build.rule = "Erzeugt neue Module, Räume, Cluster und Epochen-Zustände aus bestehenden Systemfeldern"
+
+# Build-Cluster
+build.cluster.mode   = "epoch-raum-vector"
+build.cluster.anchor = 0
+build.cluster.fields = [
+  "epoch-field",
+  "raum-field",
+  "vector-field",
+  "opta-field",
+  "sli-field",
+  "ex-field"
+]
+
+# Build-Funktion
+build.create = [
+  "module",
+  "raum",
+  "cluster",
+  "epoch-state"
+]
+
+# Weiterleitung
+build.forward = "lan0"
+build.output  = "screen0"
+
+# Bindungen
+build.bind.matrix = "matrix9x9"
+build.bind.room   = "port.room"
+build.bind.sli    = "SLI.layer"
+build.bind.ex     = "EX"
+build.bind.data   = "data0"
 

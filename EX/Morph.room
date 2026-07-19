@@ -1,12 +1,9 @@
-# Fähigkeit 6 — Morph‑Field0
-# Zustandssprünge nach deinen Maßen
-
 [morph0]
-version = 1.0
+version = 1.1
 type = "state-morph"
 zero = 0
 
-# Zustände
+# Zustände (Epochen-Nullpunkt basiert)
 state.hot0      = "heiß"
 state.hot1      = "heißer"
 state.hot2      = "glüht"
@@ -14,9 +11,9 @@ state.hot2      = "glüht"
 state.cold0     = "eis"
 state.vapor0    = "dampf"
 
-# Morph‑Sprünge (nicht linear)
-morph.jump.hot2_to_cold0  = true
+# Morph-Sprünge (Fähigkeitssprünge, nicht Temperatur)
+morph.jump.hot2_to_cold0   = true
 morph.jump.cold0_to_vapor0 = true
 
-# Morph‑Regel
+# Regel: Morph wechselt Fähigkeit, nicht physikalische Achse
 morph.rule = "Zustand wechselt Fähigkeit, nicht Temperatur"

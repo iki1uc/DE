@@ -1,37 +1,11 @@
-# 9×9‑Matrix — EPOCHE‑Matrix mit 0‑Ankern
-# Jede Zeile, Spalte und Zone enthält mindestens eine 0
-
-[matrix9x9]
-version = 1.1
-type = "epoch-matrix"
+[port.matrix]
+version = 1.0
+type = "matrix"
 zero = 0
 
-# Matrix
-row1 = [0,1,2, 3,4,5, 6,7,8]
-row2 = [1,0,3, 4,5,6, 7,8,2]
-row3 = [2,3,0, 5,6,7, 8,1,4]
+matrix.type = "9x9"
+matrix.zone = "0-20"
+matrix.axis = "X"
+matrix.vector = "6d0"
 
-row4 = [3,4,5, 0,1,2, 7,8,6]
-row5 = [4,5,6, 1,0,3, 8,2,7]
-row6 = [5,6,7, 2,3,0, 1,4,8]
-
-row7 = [6,7,8, 3,4,5, 0,2,1]
-row8 = [7,8,1, 4,6,0, 2,3,5]
-row9 = [8,2,4, 6,7,1, 3,0,5]
-
-# 0‑Anker‑Liste (Geb/Ende‑Punkte)
-zero.anchor = [
-  [0,0], [1,1], [2,2],
-  [3,3], [4,4], [5,5],
-  [6,6], [7,7], [8,8]
-]
-
-# 0‑Anker‑Regel
-matrix.rule = "0 ist Geb/Ende‑Punkt jeder EPOCHE"
-
-# 0‑Bindung
-matrix.bind = "epoch.zero"
-
-# Epochen‑Definition
-epoch.form = "x(81)1"
-epoch.role = ["cluster","matrix","gate","wloch","anker","api"]
+matrix.rule = "DE-Epochenmatrix"

@@ -1,28 +1,22 @@
-# port.lan — Kernel‑Routing‑Layer
-# Neutral, statisch, ohne Technik
-
-[LAN]
+[lan0]
 version = 1.0
-type = "kernel-router"
-mode = "static"
+type = "route-kernel"
+zero = 0
 
-# GEN → Kernel‑Zuweisung
-route.4u = "DA.html"
-route.WHY = "NE.html"
-route.onu = "BEN.html"
+# LAN‑Achsen (Routing)
+lan.axis = ["X","Y","Z"]
+lan.vector = ["6d0","12e0","6e0"]
 
-# SLI‑Routing (Kernel → Kernel)
-open.DE = ["TR", "EN"]
-open.EN = ["DE", "TR"]
-open.TR = ["DE", "EN"]
+# LAN‑Zonen (EPOCHE)
+lan.zone.X = [0,1,2, 9,10,11, 18,19,20]
+lan.zone.Y = [27,28,29, 36,37,38, 45,46,47]
+lan.zone.Z = [54,55,56, 63,64,65, 72,73,74]
 
-# Kernel‑Namen
-kernel.DE = "DA.html"
-kernel.EN = "NE.html"
-kernel.TR = "BEN.html"
+# Routing‑Regel
+lan.rule = "Leitet Zustände zwischen EPOCHE, RAUM und EX weiter"
 
-# Sicherheit / Neutralität
-tracking = false
-external = false
-engine = false
-
+# Bindungen
+lan.bind.matrix = "matrix9x9"
+lan.bind.room   = "port.room"
+lan.bind.ex     = "EX"
+lan.bind.sli    = "SLI.layer"

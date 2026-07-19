@@ -1,0 +1,22 @@
+[DE.index.generator]
+version = 1.1
+type = "html-generator"
+zero = 0
+
+html.doctype   = "<!DOCTYPE html>"
+html.lang      = "de"
+html.charset   = "UTF-8"
+html.viewport  = "width=device-width, initial-scale=1"
+
+html.structure.header  = ["System-Name", "Achse", "Vector", "Zone"]
+html.structure.main    = ["Beschreibung", "Module", "Sequenzen", "Event-Horizon"]
+html.structure.footer  = ["Copyright", "Version"]
+
+html.semantic = ["header","main","section","footer"]
+
+html.css.files = ["css/reset.css","css/styles.css"]
+html.js.files  = ["js/main.js"]
+
+html.export.TR = "TR/index.html"
+html.export.EN = "EN/index.html"
+html.export.DE = "DE/index.html"

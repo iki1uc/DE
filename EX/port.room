@@ -1,27 +1,4 @@
-if(input === "4u"){
-  activeRoutes = ["TR","EN"];
+function SLI_Route(input){
+  const routes = SLI(input);
+  EX.portRoom = routes;
 }
-function multi(gen, times){
-  return Array(times).fill(gen);
-}
-async function autoComplete(gen){
-  const chain = multi(gen,2); // Quadrat-Modus
-  for(const g of chain){
-    await runMorph("PQ", g);
-  }
-  finalizeTask(gen);
-}
-
-const TR_KI = {
-  gen: "onu",
-  valid: ["DE","TR"],
-  vector: "6e",
-  trigger: "Z"
-};
-const EN_KI = {
-  gen: "WHY",
-  valid: ["DE","EN"],
-  vector: "12e",
-  trigger: "X"
-};
-

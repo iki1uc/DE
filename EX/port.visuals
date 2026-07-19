@@ -1,60 +1,28 @@
 [port.visuals]
 version = 1.0
-type = "visual-core"
-zero = 0
+type    = "visual-engine"
+zero    = 0
 
-visuals.rule = "Erzeugt und verwaltet DE-Visuals, Layer, Effekte und Darstellungen"
+visual.engine      = "DE.render.core"
+visual.mode        = ["portal","glyph","cube","rune","element","sync","animate"]
+visual.refresh     = "60fps"
+visual.quality     = "high"
+visual.depth       = "multi-layer"
+visual.pipeline    = "eden.portal.system.final"
 
-visuals.bind.screen = "port.screen"
-visuals.bind.room   = "port.room"
-visuals.bind.matrix = "port.matrix"
-visuals.bind.data   = "port.data"
-visuals.bind.status = "port.status"
-visuals.bind.team   = "port.team"
-visuals.bind.pq     = "port.PQ0"
-visuals.bind.ex     = "PQ.EX"
+visual.bind.room   = "screen.room.final"
+visual.bind.hi     = "HI.layer.final"
 
-visuals.mode = ["auto","seq","vector","zone","state","layer"]
-
-visuals.layers = [
-  "core",
-  "seq",
-  "vector",
-  "zone",
-  "status",
-  "team",
-  "effects"
+visual.bind.layers = [
+  "eden.element.final",
+  "eden.crown.final",
+  "eden.cube.final",
+  "eden.rune.final",
+  "eden.portal.system.final"
 ]
 
-visuals.default.layer = "core"
+visual.sync.mode   = ["merge","pulse","rotate","flow"]
+visual.sync.speed  = "1.0"
 
-visuals.effects = [
-  "fade-in",
-  "fade-out",
-  "pulse",
-  "highlight",
-  "wave",
-  "morph",
-  "transition-light"
-]
-
-visuals.view.core = [
-  "axis",
-  "vector",
-  "zone",
-  "title",
-  "room.state",
-  "matrix.state"
-]
-
-visuals.view.seq = [
-  "mirror-flag",
-  "drop",
-  "ripple",
-  "light-transition",
-  "event-horizon",
-  "morphont-rise",
-  "flag-stabilize"
-]
-
-visuals.state = "active"
+visual.output      = "visuals.final"
+visual.state       = "active"

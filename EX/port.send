@@ -1,1 +1,40 @@
+[port.send]
+version = 1.0
+type = "transmit"
+zero = 0
+
+send.rule = "Überträgt DE-Daten, Sequenzen und Systemzustände an verbundene Ports"
+
+send.bind.pq     = "port.PQ0"
+send.bind.ex     = "PQ.EX"
+send.bind.room   = "port.room"
+send.bind.matrix = "port.matrix"
+send.bind.data   = "port.data"
+send.bind.status = "port.status"
+send.bind.screen = "port.screen"
+
+send.mode = ["auto","seq","vector","state"]
+
+send.packet.core = [
+  "axis",
+  "vector",
+  "zone",
+  "title",
+  "seq.step",
+  "room.state",
+  "matrix.state"
+]
+
+send.packet.seq = [
+  "mirror-flag",
+  "drop",
+  "ripple",
+  "light-transition",
+  "event-horizon",
+  "morphont-rise",
+  "flag-stabilize"
+]
+
+send.team = "team0"
+send.state = "active"
 

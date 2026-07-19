@@ -1,0 +1,27 @@
+[port.PQ0]
+version = 1.0
+type = "vector-maintainer"
+zero = 0
+
+PQ.axis   = ["X","Y","Z"]
+PQ.vector = ["6d0","12e0","6e0"]
+
+PQ.zone.X = [0,1,2, 9,10,11, 18,19,20]
+PQ.zone.Y = [27,28,29, 36,37,38, 45,46,47]
+PQ.zone.Z = [54,55,56, 63,64,65, 72,73,74]
+
+PQ.rule = "Erkennt Modul, Achse, Vector, Zone und erzeugt Titel + Routing"
+
+PQ.cluster.mode   = "epoch-raum-vector"
+PQ.cluster.anchor = 0
+PQ.cluster.fields = [
+  "epoch-field",
+  "raum-field",
+  "vector-field",
+  "opta-field",
+  "sli-field",
+  "ex-field"
+]
+
+PQ.forward = "lan0"
+PQ.output  = "screen0"

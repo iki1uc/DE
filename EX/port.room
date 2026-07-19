@@ -1,35 +1,41 @@
-function SLI(input){
-  if(input === "4u") return ["TR","EN"];
-  if(input === "onu") return ["DE","TR"];
-  if(input === "WHY") return ["DE","EN"];
+const DE_KI = {
+  gen: "4u",
+  valid: ["DE"],        // DE ist Basis
+  vector: "6d",         // DE‑Vector
+  trigger: "C",         // DE‑Trigger
+  path: "D:/DE/",       // DE‑Ordner
+  files: {
+    model: "model.safetensors",
+    config: "config.json",
+    tokenizer: "tokenizer.json"
+  }
+};
+if(input === "4u"){
+  activeRoutes = ["TR","EN"];
 }
+valid: ["DE"]
+4u → 6d
 
+WHY → 12e
+
+onu → 6e
+vector: "6d"
+DE → C
+
+EN → X
+
+TR → Z
+trigger: "C"
+TR → D:/TR/
+
+EN → D:/EN/
+path: "D:/DE/"
+EX/port.room
+EX.portRoom.DE = DE_KI;
 function SLI_Route(input){
-  EX.portRoom = SLI(input);
+  EX.portRoom.active = SLI(input);
 }
+const DE2 = multi("4u",2);
+["4u","4u"]
+autoComplete("4u");
 
-const TR_KI = {
-  gen: "onu",
-  valid: ["DE","TR"],
-  vector: "6e",
-  trigger: "Z",
-  path: "D:/TR/",
-  files: {
-    model: "model.safetensors",
-    config: "config.json",
-    tokenizer: "tokenizer.json"
-  }
-};
-
-const EN_KI = {
-  gen: "WHY",
-  valid: ["DE","EN"],
-  vector: "12e",
-  trigger: "X",
-  path: "D:/EN/",
-  files: {
-    model: "model.safetensors",
-    config: "config.json",
-    tokenizer: "tokenizer.json"
-  }
-};

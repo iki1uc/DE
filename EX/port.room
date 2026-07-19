@@ -1,64 +1,10 @@
-# port.room — EPOCHE + RAUM + FÄHIGKEIT
-# Deine echte Architektur
+[port.room]
+version = 1.0
+type = "room"
+zero = 0
 
-[ROOM]
-version = 7.0
-type = "epoch-space-ability-kernel"
-mode = "static"
+room.core = "X.room.CORE"
+room.in   = "X.room.IN"
+room.out  = "X.room.OUT"
 
-# ============================
-# 1. EPOCHE (81‑Matrix)
-# ============================
-epoch.total = 81
-epoch.form  = "x(81)1"
-epoch.role  = ["cluster","matrix","gate","wloch","anker","api"]
-
-# ============================
-# 2. RAUM (27‑E‑Drehraum)
-# ============================
-space.total = 27
-space.axis  = ["X","Y","Z"]
-space.turn  = ["+90","-90","180"]
-space.mode  = "überall-drehbar"
-
-# ============================
-# 3. FÄHIGKEIT (6‑System)
-# ============================
-ability.1 = "drehraum"
-ability.2 = "vector-field"
-ability.3 = "opta-field"
-ability.4 = "score-field"
-ability.5 = "sync-field"
-ability.6 = "morph-field"
-
-# ============================
-# 4. Vector‑Kompatibilität
-# ============================
-vector.4u  = "6d"
-vector.WHY = "12e"
-vector.onu = "6e"
-
-vector.map.6d  = ["X"]
-vector.map.12e = ["Y"]
-vector.map.6e  = ["Z"]
-
-# ============================
-# 5. Opta‑Kompatibilität
-# ============================
-opta.map.6d  = ["port.fit","port.fix","port.allign"]
-opta.map.12e = ["port.score","port.capture","port.tweak"]
-opta.map.6e  = ["port.fix","port.win","port.tweak"]
-
-# ============================
-# 6. EPOCHE → RAUM‑Bindung
-# ============================
-epoch.bind.space = "27E"
-epoch.bind.vector = "GEN"
-epoch.bind.opta = "Fähigkeit"
-
-# ============================
-# 7. Sicherheit
-# ============================
-tracking = false
-external = false
-engine = false
+room.rule = "DE-Raumstruktur für EX und PQ"

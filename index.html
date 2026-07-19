@@ -64,7 +64,21 @@ body {
 
 <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
 
-<script>
+<script><script src="EX/port.room"></script>
+<script src="SLI.layer"></script>
+<script src="KI/DE.js"></script>
+<script src="KI/TR.js"></script>
+<script src="KI/EN.js"></script>
+const KI = {
+  DE: DE_KI,
+  TR: TR_KI,
+  EN: EN_KI
+};
+function runKI(gen){
+  const ki = KI[gen];
+  runMorph(ki.path, ki.files.model);
+}
+
 /* Python‑Engine laden */
 let pyodideReady = false;
 let pyodide;

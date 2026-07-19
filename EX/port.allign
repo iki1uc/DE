@@ -1,1 +1,15 @@
+[allign0]
+version = 1.0
+type = "opta-align"
+zero = 0
+
+# Ausrichtung nach deinen Maßen
+align.axis   = ["X","Y","Z"]
+align.vector = ["6d0","12e0","6e0"]
+
+# Kernfunktion
+align.rule = "Ausrichtung erfolgt nach EPOCHE‑Nullpunkt"
+
+# Bindung
+align.bind = "port.room"
 

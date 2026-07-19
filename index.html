@@ -1,122 +1,84 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="UTF-8">
-<title>DE – Struktur‑Matrix 9×9</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+import numpy as np
 
-<style>
-    body {
-        background: #0d0d0d;
-        color: #e6e6e6;
-        font-family: Arial, sans-serif;
-        padding: 40px;
-    }
-    h1 {
-        text-align: center;
-        color: #7df;
-        margin-bottom: 30px;
-        font-size: 2.2em;
-    }
-    #matrix {
-        display: grid;
-        grid-template-columns: repeat(9, 50px);
-        grid-gap: 8px;
-        justify-content: center;
-        margin-top: 40px;
-    }
-    .cell {
-        width: 50px;
-        height: 50px;
-        background: #1a1a1a;
-        border: 1px solid #333;
-        text-align: center;
-        line-height: 50px;
-        cursor: pointer;
-        transition: 0.2s;
-        font-size: 1.1em;
-    }
-    .cell:hover {
-        background: #7df;
-        color: #000;
-        transform: scale(1.1);
-    }
-    #output {
-        margin-top: 40px;
-        padding: 20px;
-        background: #1a1a1a;
-        border: 1px solid #333;
-        border-radius: 6px;
-    }
-    h2 {
-        color: #7df;
-    }
-</style>
+# --- NC Attack ---
+def nc_dot(v1, v2):
+    return np.dot(v1, v2)
 
-</head>
-<body>
+def nc_matmul(m1, m2):
+    return np.matmul(m1, m2)
 
-<h1>DE – Struktur‑Engine (9×9)</h1>
+# --- Ableitungen ---
+def ableitungen(DE, TR, EN, DA, NE, BEN, F1, F2):
+    A1 = (DE + TR + EN) / 3
+    A2 = (DA + NE + BEN) / 3
+    A3 = (F1 + F2) / 2
+    return A1, A2, A3
 
-<!-- DE lädt eigene Module -->
-<script src="DE.room"></script>
-<script src="X.room.IN"></script>
-<script src="X.room.CORE"></script>
-<script src="X.room.OUT"></script>
-<script src="tmp.room"></script>
-<script src="tmp-Matrix"></script>
-<script src="6E → 6D.tech"></script>
-<script src="DATA"></script>
+# --- 3x1 Argument-Vektor ---
+def argument_vektor(A1, A2, A3):
+    return np.array([A1, A2, A3]).reshape(3,1)
 
-<div id="matrix"></div>
+# --- 6x6 Hauptstellung ---
+def matrix_6x6(DE, TR, EN, DA, NE, BEN):
+    s6 = np.array([DE, TR, EN, DA, NE, BEN])
+    return np.outer(s6, s6)
 
-<div id="output">
-    <h2>DE‑Struktur‑Output</h2>
-    <p id="result">Wähle ein Feld aus der 9×9‑Matrix.</p>
-</div>
+# --- 3x3 Nahem-Raster ---
+def matrix_3x3(DE, TR, EN):
+    s3 = np.array([DE, TR, EN])
+    return np.outer(s3, s3)
 
-<script>
-// DE – Struktur Engine
-const matrix = document.getElementById("matrix");
-const result = document.getElementById("result");
+# --- 8x8 Bewegungs-Nahem ---
+def matrix_8x8(DE, TR, EN, DA, NE, BEN, F1, F2):
+    s8 = np.array([DE, TR, EN, DA, NE, BEN, F1, F2])
+    return np.outer(s8, s8)
 
-// 9×9 tmp‑Matrix erzeugen
-for (let i = 1; i <= 81; i++) {
-    let cell = document.createElement("div");
-    cell.className = "cell";
-    cell.textContent = i;
-    cell.onclick = () => DE_calc(i);
-    matrix.appendChild(cell);
-}
+# --- Vectoring (Home / Ort / Lage) ---
+def vectoring(home, ort, lage):
+    return np.array([home, ort, lage]).reshape(3,1)
 
-// DE‑Calc‑Modus (Struktur, kein Root)
-function DE_calc(n) {
+# --- DE-Respo ---
+def DE_respo(A1, A2, A3, trigger, attack_value):
+    return f"DE-Respo: {trigger}-Attack → A1={A1:.3f}, A2={A2:.3f}, A3={A3:.3f}, NC={attack_value:.3f}"
 
-    // Struktur‑Score (DE‑eigener DATA‑Layer)
-    let score = Math.floor(Math.random() * 600);
+# --- Trigger Engine ---
+def trigger(trigger, DE, TR, EN, DA, NE, BEN, F1, F2, home, ort, lage):
 
-    // DE‑Achsen
-    let achse = "Achse-" + (n % 6);
+    A1, A2, A3 = ableitungen(DE, TR, EN, DA, NE, BEN, F1, F2)
 
-    // DE‑Bereich
-    let bereich = "Bereich-" + (n % 8);
+    # NC Attack Basis
+    base_vec = np.array([DE, TR, EN])
+    attack_value = nc_dot(base_vec, base_vec)
 
-    // DE‑Epoche / Dimension
-    let epoche = "DE‑6E-" + (n % 6);
-    let dimension = "DE‑6D-" + (n % 6);
+    if trigger == "C":
+        return {
+            "Trigger": "C",
+            "3x1": argument_vektor(A1, A2, A3),
+            "Vectoring": vectoring(home, ort, lage),
+            "Respo": DE_respo(A1, A2, A3, "Core", attack_value)
+        }
 
-    // Ausgabe
-    result.innerHTML = `
-        <strong>DE‑Struktur:</strong> Feld ${n}<br>
-        <strong>Score:</strong> ${score}<br>
-        <strong>Achse:</strong> ${achse}<br>
-        <strong>Bereich:</strong> ${bereich}<br>
-        <strong>Epoche:</strong> ${epoche}<br>
-        <strong>Dimension:</strong> ${dimension}<br>
-        <strong>Weiterleitung:</strong> Struktur an TR bereit
-    `;
-}
-</script>
+    if trigger == "X":
+        m6 = matrix_6x6(DE, TR, EN, DA, NE, BEN)
+        m8 = matrix_8x8(DE, TR, EN, DA, NE, BEN, F1, F2)
+        return {
+            "Trigger": "X",
+            "6x6": m6,
+            "8x8": m8,
+            "X-Exchange": np.flip(m8, axis=1),
+            "Vectoring": vectoring(home, ort, lage),
+            "Respo": DE_respo(A1, A2, A3, "Cross", attack_value)
+        }
 
-</body>
-</html>
+    if trigger == "Z":
+        m3 = matrix_3x3(DE, TR, EN)
+        m8 = matrix_8x8(DE, TR, EN, DA, NE, BEN, F1, F2)
+        return {
+            "Trigger": "Z",
+            "3x3": m3,
+            "8x8": m8,
+            "Vectoring": vectoring(home, ort, lage),
+            "Respo": DE_respo(A1, A2, A3, "Zenith", attack_value)
+        }
+
+    return {"Error": "Unbekannter Trigger"}

@@ -1,7 +1,22 @@
-MORPH‑OUTPUT
-------------
-File: <Dateiname>
-GEN‑Strang: 4u / WHY / onu
-Vector: 6d / 12e / 6e
-Trigger: C / X / Z
-Pipeline‑Pair: [A → B]
+# Fähigkeit 6 — Morph‑Field0
+# Zustandssprünge nach deinen Maßen
+
+[morph0]
+version = 1.0
+type = "state-morph"
+zero = 0
+
+# Zustände
+state.hot0      = "heiß"
+state.hot1      = "heißer"
+state.hot2      = "glüht"
+
+state.cold0     = "eis"
+state.vapor0    = "dampf"
+
+# Morph‑Sprünge (nicht linear)
+morph.jump.hot2_to_cold0  = true
+morph.jump.cold0_to_vapor0 = true
+
+# Morph‑Regel
+morph.rule = "Zustand wechselt Fähigkeit, nicht Temperatur"

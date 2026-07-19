@@ -1,85 +1,63 @@
-# port.room — Master‑Kernel‑Logic (Vector + Opta kompatibel)
-# Neutral, statisch, ohne Technik
+# port.room — EPOCHE + RAUM + FÄHIGKEIT
+# Deine echte Architektur
 
 [ROOM]
-version = 3.0
-type = "master-kernel"
+version = 7.0
+type = "epoch-space-ability-kernel"
 mode = "static"
 
 # ============================
-# 1. GEN → Kernel‑Mapping
+# 1. EPOCHE (81‑Matrix)
 # ============================
-kernel.4u  = "DA.html"
-kernel.WHY = "NE.html"
-kernel.onu = "BEN.html"
+epoch.total = 81
+epoch.form  = "x(81)1"
+epoch.role  = ["cluster","matrix","gate","wloch","anker","api"]
 
 # ============================
-# 2. GEN → Vector (vector-kompatibel)
+# 2. RAUM (27‑E‑Drehraum)
+# ============================
+space.total = 27
+space.axis  = ["X","Y","Z"]
+space.turn  = ["+90","-90","180"]
+space.mode  = "überall-drehbar"
+
+# ============================
+# 3. FÄHIGKEIT (6‑System)
+# ============================
+ability.1 = "drehraum"
+ability.2 = "vector-field"
+ability.3 = "opta-field"
+ability.4 = "score-field"
+ability.5 = "sync-field"
+ability.6 = "morph-field"
+
+# ============================
+# 4. Vector‑Kompatibilität
 # ============================
 vector.4u  = "6d"
 vector.WHY = "12e"
 vector.onu = "6e"
 
-# ============================
-# 3. GEN → Trigger
-# ============================
-trigger.4u  = "C"
-trigger.WHY = "X"
-trigger.onu = "Z"
+vector.map.6d  = ["X"]
+vector.map.12e = ["Y"]
+vector.map.6e  = ["Z"]
 
 # ============================
-# 4. GEN → Valid‑Sets
+# 5. Opta‑Kompatibilität
 # ============================
-valid.4u  = ["DE"]
-valid.WHY = ["DE","EN"]
-valid.onu = ["DE","TR"]
-
-# ============================
-# 5. GEN → Pfade
-# ============================
-path.4u  = "D:/DE/"
-path.WHY = "D:/EN/"
-path.onu = "D:/TR/"
-
-# ============================
-# 6. Pipeline‑Zuweisung
-# ============================
-pipeline.4u  = "PIPELINE.DE"
-pipeline.WHY = "PIPELINE.EN"
-pipeline.onu = "PIPELINE.TR"
-
-# ============================
-# 7. SLI‑Layer Öffnungen
-# ============================
-open.DE = ["TR","EN"]
-open.EN = ["DE","TR"]
-open.TR = ["DE","EN"]
-
-# ============================
-# 8. Opta‑Module (opta-kompatibel)
-# ============================
-opta.fit     = "port.fit"
-opta.fix     = "port.fix"
-opta.score   = "port.score"
-opta.capture = "port.capture"
-opta.allign  = "port.allign"
-opta.tweak   = "port.tweak"
-opta.win     = "port.win"
-
-# ============================
-# 9. Vector → Opta‑Mapping
-# ============================
-# 6d → DE‑Optimierung
-opta.map.6d = ["port.fit","port.fix","port.allign"]
-
-# 12e → EN‑Optimierung
+opta.map.6d  = ["port.fit","port.fix","port.allign"]
 opta.map.12e = ["port.score","port.capture","port.tweak"]
-
-# 6e → TR‑Optimierung
-opta.map.6e = ["port.fix","port.win","port.tweak"]
+opta.map.6e  = ["port.fix","port.win","port.tweak"]
 
 # ============================
-# 10. Sicherheit / Neutralität
+# 6. EPOCHE → RAUM‑Bindung
+# ============================
+epoch.bind.space = "27E"
+epoch.bind.vector = "GEN"
+epoch.bind.opta = "Fähigkeit"
+
+# ============================
+# 7. Sicherheit
 # ============================
 tracking = false
 external = false

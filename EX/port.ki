@@ -1,1 +1,86 @@
+[port.master]
+version = 1.0
+type = "master-core"
+zero = 0
+
+master.rule = "Zentrale Steuerinstanz des DE-Systems: kontrolliert Module, Sequenzen, Nodes, Chains und Systemfluss"
+
+master.bind.pq      = "port.PQ0"
+master.bind.ex      = "PQ.EX"
+master.bind.room    = "port.room"
+master.bind.matrix  = "port.matrix"
+master.bind.data    = "port.data"
+master.bind.status  = "port.status"
+master.bind.team    = "port.team"
+master.bind.screen  = "port.screen"
+master.bind.visuals = "port.visuals"
+master.bind.grid    = "port.9x9"
+master.bind.win0    = "port.win0"
+master.bind.user    = "port.user"
+master.bind.fit     = "port.fit"
+master.bind.fix     = "port.fix"
+master.bind.allign  = "port.allign"
+master.bind.capture = "port.capture"
+master.bind.build   = "port.build"
+master.bind.send    = "port.send"
+master.bind.score   = "port.score"
+master.bind.sync    = "port.sync"
+master.bind.core    = "port.core"
+master.bind.lan     = "port.lan"
+master.bind.api     = "port.api"
+master.bind.host    = "port.host"
+master.bind.boot    = "port.boot"
+master.bind.link    = "port.link"
+master.bind.setup   = "port.setup"
+master.bind.net     = "port.net"
+master.bind.node    = "port.node"
+master.bind.chain   = "port.chain"
+
+master.mode = ["auto","manual","seq","vector","zone","state","team","core","visual","grid","system","route","flow","node","chain","master"]
+
+master.sequence = [
+  "master-init",
+  "master-load",
+  "master-sync",
+  "master-route",
+  "master-flow",
+  "master-node",
+  "master-chain",
+  "master-system",
+  "master-complete"
+]
+
+master.flow = [
+  "flow-master-in",
+  "flow-master-out",
+  "flow-master-sync",
+  "flow-master-update",
+  "flow-master-route",
+  "flow-master-verify"
+]
+
+master.status = [
+  "master.ready",
+  "master.active",
+  "master.idle",
+  "master.error",
+  "master.linked"
+]
+
+master.actions = [
+  "master-start",
+  "master-refresh",
+  "master-update",
+  "master-sync",
+  "master-route",
+  "master-flow",
+  "master-connect",
+  "master-verify",
+  "master-complete"
+]
+
+master.automaster = true
+master.interval = "4s"
+
+master.state = "active"
 

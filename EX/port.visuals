@@ -1,1 +1,8 @@
+[visuals0]
+version = 1.0
+type = "visual-kernel"
+zero = 0
+
+visuals.rule = "Erstellt visuelle Darstellung des Auftrags"
+visuals.bind = "status0"
 

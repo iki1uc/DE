@@ -1,40 +1,69 @@
-[port.send]
+[port.build]
 version = 1.0
-type = "transmit"
+type = "builder-core"
 zero = 0
 
-send.rule = "Überträgt DE-Daten, Sequenzen und Systemzustände an verbundene Ports"
+build.rule = "Erstellt, konstruiert und generiert DE-Systemmodule, Sequenzen, Visuals und Strukturen"
 
-send.bind.pq     = "port.PQ0"
-send.bind.ex     = "PQ.EX"
-send.bind.room   = "port.room"
-send.bind.matrix = "port.matrix"
-send.bind.data   = "port.data"
-send.bind.status = "port.status"
-send.bind.screen = "port.screen"
+build.bind.pq      = "port.PQ0"
+build.bind.ex      = "PQ.EX"
+build.bind.room    = "port.room"
+build.bind.matrix  = "port.matrix"
+build.bind.data    = "port.data"
+build.bind.status  = "port.status"
+build.bind.team    = "port.team"
+build.bind.screen  = "port.screen"
+build.bind.visuals = "port.visuals"
+build.bind.grid    = "port.9x9"
+build.bind.win0    = "port.win0"
+build.bind.user    = "port.user"
+build.bind.fit     = "port.fit"
+build.bind.fix     = "port.fix"
+build.bind.allign  = "port.allign"
+build.bind.capture = "port.capture"
 
-send.mode = ["auto","seq","vector","state"]
+build.mode = ["auto","manual","seq","vector","zone","state","visual","team","core","structure"]
 
-send.packet.core = [
+build.core = [
   "axis",
   "vector",
   "zone",
   "title",
-  "seq.step",
   "room.state",
-  "matrix.state"
+  "matrix.state",
+  "team.state",
+  "seq.current"
 ]
 
-send.packet.seq = [
+build.seq = [
   "mirror-flag",
   "drop",
   "ripple",
   "light-transition",
   "event-horizon",
   "morphont-rise",
-  "flag-stabilize"
+  "flag-stabilize",
+  "seq.progress",
+  "seq.end"
 ]
 
-send.team = "team0"
-send.state = "active"
+build.actions = [
+  "build-core",
+  "build-seq",
+  "build-vector",
+  "build-zone",
+  "build-room",
+  "build-matrix",
+  "build-team",
+  "build-status",
+  "build-screen",
+  "build-visuals",
+  "build-grid",
+  "build-window",
+  "build-structure"
+]
 
+build.autobuild = true
+build.interval = "6s"
+
+build.state = "active"
